@@ -1,28 +1,61 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
-public:
-    ListNode* reverseKGroup(ListNode* head, int k) {
-
-        ListNode* temp = head;
-        for(int i = 0; i < k; i++) {
-            if(temp == nullptr) {
-                return head;
-            }
-            temp = temp->next;
-        }
-
-        ListNode* prev = nullptr;
-        ListNode* curr = head;
-
-
-        for(int i = 0; i < k; i++) {
-            ListNode* next = curr->next;
+public:void reverse(ListNode*head, int time){
+        ListNode*curr=head;
+        ListNode*prev=NULL;
+        while(time--){
+            ListNode*next = curr->next;
             curr->next = prev;
             prev = curr;
             curr = next;
         }
+        return;
+    }
+    ListNode* reverseKGroup(ListNode* head, int k) {
+         if(head==NULL)
+        return NULL;
+        ListNode*left = head;
+        ListNode*right;
+        ListNode*res = NULL;
+        ListNode*prevleft = NULL;
+        int size = k;
+        while(true){
+            right = left;
+            for(int i=0; i<size-1; i++){
+                if(right==NULL)
+                break;
+                right = right->next;
+            }
+            if(right){
+                ListNode*nextleft = right->next;
+                reverse(left,size);
+                if(prevleft)
+                prevleft->next = right;
+                prevleft = left;
+                if(res == NULL)
+                    res=right;
 
-        head->next = reverseKGroup(curr, k);
+                    left = nextleft;
+            } 
+                else{
+                    if(prevleft)
+                    prevleft->next = left;
+                    if(res == NULL)
+                       res=left;
 
-        return prev;
+                       break;
+                
+                }
+            }
+            return res;
     }
 };
