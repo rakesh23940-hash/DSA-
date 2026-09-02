@@ -1,53 +1,49 @@
 class Solution {
 public:
-    vector<vector<int>> res;
-
-    void twoSum(vector<int>& nums, int target, int i, int j) {
-       
-        while (i < j) {
-            if (nums[i] + nums[j] > target) {
-                j--;
-            } else if (nums[i] + nums[j] < target) {
-                i++;
-            } else {
-                
-                while (i < j && nums[i] == nums[i + 1]) {
-                    i++;
-                }
-                while (i < j && nums[j] == nums[j - 1]) {
-                    j--;
-                }
-                res.push_back({-target, nums[i], nums[j]});
-                i++;
-                j--;
-            }
-        }
-    }
-
     vector<vector<int>> threeSum(vector<int>& nums) {
-        int n = nums.size();
 
-        if (n < 3) {
-            return {};
-        }
+        vector<vector<int>> ans;
 
-        res.clear();
-
-       
         sort(nums.begin(), nums.end());
 
-      
-        for (int i = 0; i < n; i++) {
-           
-            if (i > 0 && nums[i] == nums[i - 1]) {
+        int n = nums.size();
+
+        for(int i = 0; i < n; i++) {
+
+            if(i > 0 && nums[i] == nums[i - 1])
                 continue;
+
+            int j = i + 1;
+            int k = n - 1;
+
+            while(j < k) {
+
+                int sum = nums[i] + nums[j] + nums[k];
+
+                if(sum < 0) {
+                    j++;
+                }
+
+                else if(sum > 0) {
+                    k--;
+                }
+
+                else {
+                    vector<int> temp = {nums[i], nums[j], nums[k]};
+                    ans.push_back(temp);
+
+                    j++;
+                    k--;
+
+                    while(j < k && nums[j] == nums[j - 1])
+                        j++;
+
+                    while(j < k && nums[k] == nums[k + 1])
+                        k--;
+                }
             }
-            int n1 = nums[i];
-            int target = -n1;
-           
-            twoSum(nums, target, i + 1, n - 1);
         }
 
-        return res;
+        return ans;
     }
 };
