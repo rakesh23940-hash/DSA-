@@ -4,30 +4,30 @@ public:
     long long maximumSubarraySum(vector<int>& nums, int k) {
         unordered_map<int, int> mp;
 
-        int left = 0;
+        int i = 0;
         long long sum = 0;
         long long maxi = 0;
 
-        for (int right = 0; right < nums.size(); right++) {
+        for (int j = 0; j < nums.size(); j++) {
 
             
-            sum += nums[right];
-            mp[nums[right]]++;
+            sum += nums[j];
+            mp[nums[j]]++;
 
            
-            if (right - left + 1 > k) {
-                sum -= nums[left];
-                mp[nums[left]]--;
+            if (j - i + 1 > k) {
+                sum -= nums[i];
+                mp[nums[i]]--;
 
-                if (mp[nums[left]] == 0) {
-                    mp.erase(nums[left]);
+                if (mp[nums[i]] == 0) {
+                    mp.erase(nums[i]);
                 }
 
-                left++;
+                i++;
             }
 
           
-            if (right - left + 1 == k && mp.size() == k) {
+            if (j - i + 1 == k && mp.size() == k) {
                 maxi = max(maxi, sum);
             }
         }
