@@ -10,11 +10,11 @@ public:
 
         for (int right = 0; right < nums.size(); right++) {
 
-            // Add current element
+            
             sum += nums[right];
             mp[nums[right]]++;
 
-            // Window size should not exceed k
+           
             if (right - left + 1 > k) {
                 sum -= nums[left];
                 mp[nums[left]]--;
@@ -26,7 +26,7 @@ public:
                 left++;
             }
 
-            // Check size k and all elements distinct
+          
             if (right - left + 1 == k && mp.size() == k) {
                 maxi = max(maxi, sum);
             }
