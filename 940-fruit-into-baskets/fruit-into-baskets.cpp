@@ -4,23 +4,23 @@ public:
         
 
        unordered_map<int,int> f;
-       int low=0,high=0;
+       int i=0,j=0;
        int n=fruits.size();
        int res=INT_MIN;
-       for(high=0;high<n;high++)
+       for(j=0;j<n;j++)
        {
-           f[fruits[high]]++;
+           f[fruits[j]]++;
            while(f.size()>2)
            {
-               f[fruits[low]]--;
-               if(f[fruits[low]] ==0)
-               f.erase(fruits[low]);
-               low++;
+               f[fruits[i]]--;
+               if(f[fruits[i]] ==0)
+               f.erase(fruits[i]);
+               i++;
            }
 
 
           
-               int len=high-low+1;
+               int len=j-i+1;
                res=max(res,len);
           
        }
