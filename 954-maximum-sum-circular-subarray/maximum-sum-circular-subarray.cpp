@@ -4,36 +4,31 @@ public:
     int maxSubArray(vector<int>& nums) {
         int n = nums.size();
 
-        int bestending = nums[0];
-        int ans = nums[0];
+        int currSum = nums[0];
+        int maxSum = nums[0];
 
         for (int i = 1; i < n; i++) {
-            int v1 = bestending + nums[i];
-            int v2 = nums[i];
-
-            bestending = max(v1, v2);
-            ans = max(ans, bestending);
+            currSum = max(nums[i],currSum+nums[i]);
+            maxSum = max(maxSum,currSum);
         }
 
-        return ans;
+        return maxSum;
     }
 
-    int minSubArray(vector<int>& nums) {
+     int minSubArray(vector<int>& nums) {
         int n = nums.size();
 
-        int bestending = nums[0];
-        int ans = nums[0];
+        int currSum = nums[0];
+        int minSum = nums[0];
 
         for (int i = 1; i < n; i++) {
-            int v1 = bestending + nums[i];
-            int v2 = nums[i];
-
-            bestending = min(v1, v2);
-            ans = min(ans, bestending);
+            currSum = min(nums[i],currSum+nums[i]);
+            minSum = min(minSum,currSum);
         }
 
-        return ans;
+        return minSum;
     }
+
 
     int maxSubarraySumCircular(vector<int>& nums) {
 
