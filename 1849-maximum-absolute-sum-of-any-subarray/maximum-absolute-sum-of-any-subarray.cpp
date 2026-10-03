@@ -1,27 +1,26 @@
 class Solution {
 public:
     int maxSubarray(vector<int>& nums) {
-        int bestEnding = nums[0];
-        int ans = nums[0];
+        int currSum = nums[0];
+        int maxSum = nums[0];
 
         for (int i = 1; i < nums.size(); i++) {
-            bestEnding = max(nums[i], bestEnding + nums[i]);
-            ans = max(ans, bestEnding);
+            currSum = max(nums[i], currSum + nums[i]);
+            maxSum = max(maxSum, currSum);
         }
 
-        return ans;
+        return maxSum;
     }
-
-    int minSubarray(vector<int>& nums) {
-        int bestEnding = nums[0];
-        int ans = nums[0];
+        int minSubarray(vector<int>& nums) {
+        int currSum = nums[0];
+        int minSum = nums[0];
 
         for (int i = 1; i < nums.size(); i++) {
-            bestEnding = min(nums[i], bestEnding + nums[i]);
-            ans = min(ans, bestEnding);
+            currSum = min(nums[i], currSum + nums[i]);
+            minSum = min(minSum, currSum);
         }
 
-        return ans;
+        return minSum;
     }
 
     int maxAbsoluteSum(vector<int>& nums) {
