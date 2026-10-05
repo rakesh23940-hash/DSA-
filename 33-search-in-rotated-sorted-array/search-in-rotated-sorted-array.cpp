@@ -8,31 +8,31 @@ public:
 
         while (low <= high) {
 
-            int guess = (low + high) / 2;
+            int mid = (low + high) / 2;
 
-            if (nums[guess] == target) {
-                return guess;
+            if (nums[mid] == target) {
+                return mid;
             }
 
            
-            if (nums[low] <= nums[guess]) {
+            if (nums[low] <= nums[mid]) {
 
-                if (nums[low] <= target && target < nums[guess]) {
-                    high = guess - 1;
+                if (nums[low] <= target && target < nums[mid]) {
+                    high = mid - 1;
                 }
                 else {
-                    low = guess + 1;
+                    low = mid + 1;
                 }
             }
 
            
             else {
 
-                if (nums[guess] < target && target <= nums[high]) {
-                    low = guess + 1;
+                if (nums[mid] < target && target <= nums[high]) {
+                    low = mid + 1;
                 }
                 else {
-                    high = guess - 1;
+                    high = mid - 1;
                 }
             }
         }
