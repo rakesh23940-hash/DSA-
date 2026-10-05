@@ -4,15 +4,18 @@ public:
 
         int n = nums.size();
 
-        // First occurrence
-        int low = 0, high = n - 1;
+
+        int low = 0;
+        int high = n - 1;
         int first = -1;
 
-        while (low <= high) {
+        while(low <= high) {
+
             int mid = low + (high - low) / 2;
 
-            if (nums[mid] >= target) {
-                if (nums[mid] == target)
+            if(nums[mid] >= target) {
+
+                if(nums[mid] == target)
                     first = mid;
 
                 high = mid - 1;
@@ -22,16 +25,18 @@ public:
             }
         }
 
-        // Last occurrence
+ 
         low = 0;
         high = n - 1;
         int last = -1;
 
-        while (low <= high) {
+        while(low <= high) {
+
             int mid = low + (high - low) / 2;
 
-            if (nums[mid] <= target) {
-                if (nums[mid] == target)
+            if(nums[mid] <= target) {
+
+                if(nums[mid] == target)
                     last = mid;
 
                 low = mid + 1;
