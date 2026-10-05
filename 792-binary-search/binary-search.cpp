@@ -4,15 +4,15 @@ public:
         int n = nums.size();
         int left = 0, right = n-1;
         while (left<=right){
-             int guess = (left+right)/2;
-            if(nums[guess]==target){
-            return guess;
+             int mid = (left+right)/2;
+            if(nums[mid]==target){
+            return mid;
             }
-            else if(target> nums[guess]){
-            left = guess+1;
+            else if(target> nums[mid]){
+            left = mid+1;
             }
             else {
-                right = guess-1;
+                right = mid-1;
             }
 
     }
