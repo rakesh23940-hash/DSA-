@@ -10,10 +10,10 @@ public:
         for(int j=k;j<n;j++){
             sum+=nums[j];
             sum-=nums[j-k];
-
             maxi = max(maxi,sum);
         }
         return (double)maxi/k;
+
         
     }
 };
